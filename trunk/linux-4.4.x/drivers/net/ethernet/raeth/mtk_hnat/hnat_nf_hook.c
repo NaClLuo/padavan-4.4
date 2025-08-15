@@ -1637,7 +1637,7 @@ static unsigned int mtk_hnat_nf_post_routing(
 		return 0;
 	if (unlikely(!skb_mac_header_was_set(skb)))
 		return 0;
-		
+
 	if (unlikely(!skb_hnat_is_hashed(skb)))
 		return 0;
 
@@ -1815,12 +1815,12 @@ mtk_pong_hqos_handler(void *priv, struct sk_buff *skb,
 
 	return NF_ACCEPT;
 drop:
-	printk_ratelimited(KERN_WARNING
+	/*printk_ratelimited(KERN_WARNING
 				"%s:drop (in_dev=%s, iif=0x%x, CB2=0x%x, ppe_hash=0x%x, sport=0x%x, reason=0x%x, alg=0x%x)\n",
 				__func__, state->in->name, skb_hnat_iface(skb),
 				HNAT_SKB_CB2(skb)->magic, skb_hnat_entry(skb),
 				skb_hnat_sport(skb), skb_hnat_reason(skb),
-				skb_hnat_alg(skb));
+				skb_hnat_alg(skb));*/
 
 	return NF_DROP;
 }
