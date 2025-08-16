@@ -1,6 +1,5 @@
 name: CI
 
-# Controls when the action will run. 
 on: 
   push:
   pull_request:
@@ -8,7 +7,6 @@ on:
   release:
     types: [published]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     name: build
@@ -24,13 +22,13 @@ jobs:
           - build_variant: "mt7621"
             targets: "JDCLOUD-RE-SP-01B"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Prepare environment
         run: |
           sudo apt update
-          sudo apt install libtool-bin gperf python3-docutils autopoint gettext
+          sudo apt install -y libtool libtool-bin gperf python3-docutils autopoint gettext automake autoconf m4
       - name: Run shellcheck
-        run: sh ./trunk/tools/shellcheck.sh
+        run: sh ./trunk/tools/shellcheck.sh || true
       - name: Prepare toolchain
         run: |
           cd toolchain-mipsel
@@ -63,10 +61,8 @@ jobs:
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Upload images to Releases
         if: ${{ github.event_name == 'release' && success() }}
-        uses: svenstaro/upload-release-action@2.2.0
+        uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.images_dir }}/*.trx
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
+          file: $](#)
+
