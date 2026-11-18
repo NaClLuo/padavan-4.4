@@ -13,7 +13,8 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
-	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	-DCMAKE_INSTALL_PREFIX=/usr \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_EXE_LINKER_FLAGS="-L$(STAGEDIR)/lib -lev"; \
 	)
