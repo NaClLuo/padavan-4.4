@@ -25,6 +25,7 @@ config_test:
 configure:
 	( mkdir -p $(SRC_NAME)/build && cd $(SRC_NAME)/build ; \
 	cmake \
+	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 	-DCMAKE_INSTALL_PREFIX=$(STAGEDIR) \
 	-DCMAKE_TOOLCHAIN_FILE=../../cross-mipsel-linux.cmake \
 	-DBUILD_TESTING=OFF \
