@@ -52,7 +52,7 @@ pthread_t progress_thread;
 pthread_mutex_t progress_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
-static void sigwinch_handler()
+static void sigwinch_handler(int sig)
 {
 	struct winsize winsize;
 
@@ -66,7 +66,7 @@ static void sigwinch_handler()
 }
 
 
-static void sigalrm_handler()
+static void sigalrm_handler(int sig)
 {
 	rotate = (rotate + 1) % 4;
 }
@@ -256,4 +256,3 @@ void progressbar_info(char *fmt, ...)
 
 	pthread_cleanup_pop(1);
 }
-
