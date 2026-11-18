@@ -129,7 +129,7 @@ void prep_exit()
 }
 
 
-void sigwinch_handler()
+void sigwinch_handler(int sig)
 {
 	struct winsize winsize;
 
@@ -143,7 +143,7 @@ void sigwinch_handler()
 }
 
 
-void sigalrm_handler()
+void sigalrm_handler(int sig)
 {
 	rotate = (rotate + 1) % 4;
 }
